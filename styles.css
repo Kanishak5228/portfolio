@@ -21,7 +21,8 @@ html {
 }
 body {
     background-color: #1e1515; /* Dark background */
-    background: linear-gradient(to right, #1E90FF, #8A2BE2);
+    background: linear-gradient(to right, #667788, #1f0238);
+    /*background: linear-gradient(to right, #1E90FF, #8A2BE2);*/
     color: #ffffff; /* White text for readability */
     line-height: 1.6;
     font-family: 'Arial', sans-serif;
