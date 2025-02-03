@@ -266,26 +266,107 @@
             document.getElementById('progress-bar').style.width = scrolled + "%";
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <div id="particles-js" class="fixed inset-0 -z-10"></div>
-    <script>
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80 },
-                color: { value: '#1E90FF' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.5 },
-                size: { value: 3 },
-                move: { 
-                    enable: true,
-                    speed: 2,
-                    direction: 'none',
-                    random: false,
-                    straight: false,
-                    out_mode: 'out'
-                }
+    <!-- Include Particles.js Library -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+<!-- Background Starry Sky -->
+<div id="particles-js" class="absolute top-0 left-0 w-full h-full -z-10"></div>
+<canvas id="shooting-stars" class="absolute top-0 left-0 w-full h-full -z-10"></canvas>
+
+<script>
+    // Twinkling Stars Configuration
+    particlesJS("particles-js", {
+        particles: {
+            number: { value: 1500 }, // More stars
+            color: { value: "#ffffff" }, // White stars
+            shape: { type: "circle" },
+            opacity: {
+                value: 1,
+                random: true, // Some stars twinkle
+                anim: { enable: true, speed: 2, opacity_min: 0.3, sync: false } // Twinkling effect
+            },
+            size: {
+                value: 2.5,
+                random: true,
+                anim: { enable: true, speed: 5555, size_min: 0.5, sync: false } // Smooth size animation
+            },
+            move: {
+                enable: true,
+                speed: 0.2, // Very slow movement like stars
+                direction: "none",
+                random: true,
+                straight: false,
+                out_mode: "out"
+            },
+            line_linked: { enable: false } // No connecting lines
+        },
+        interactivity: {
+            detect_on: "canvas",
+            events: {
+                onhover: { enable: true, mode: "bubble" },
+                onclick: { enable: true, mode: "repulse" },
+                resize: true
+            },
+            modes: {
+                bubble: { distance: 200, size: 4, duration: 2, opacity: 1 },
+                repulse: { distance: 100, duration: 0.05 }
             }
-        });
+        },
+        retina_detect: true
+    });
+
+    // Shooting Stars Effect
+    const canvas = document.getElementById("shooting-stars");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const shootingStars = [];
+
+    function createShootingStar() {
+        return {
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height / 2, // Only appear in top half
+            length: Math.random() * 100 + 50,
+            speed: Math.random() * 4 + 2,
+            opacity: Math.random() * 0.5 + 0.5
+        };
+    }
+
+    function drawShootingStar(star) {
+        ctx.beginPath();
+        ctx.moveTo(star.x, star.y);
+        ctx.lineTo(star.x + star.length, star.y + star.length);
+        ctx.strokeStyle = `rgba(255, 255, 255, ${star.opacity})`;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    }
+
+    function updateShootingStars() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if (Math.random() < 0.02) { // Controls how often shooting stars appear
+            shootingStars.push(createShootingStar());
+        }
+
+        for (let i = 0; i < shootingStars.length; i++) {
+            const star = shootingStars[i];
+            star.x += star.speed;
+            star.y += star.speed;
+            star.opacity -= 0.005; // Fades out
+
+            if (star.opacity <= 0) {
+                shootingStars.splice(i, 1);
+                i--;
+            }
+        }
+
+        shootingStars.forEach(drawShootingStar);
+        requestAnimationFrame(updateShootingStars);
+    }
+
+    updateShootingStars();
+</script>
     </script>
     
 
