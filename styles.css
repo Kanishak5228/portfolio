@@ -1,5 +1,4 @@
 /* General Styles */
-
 header {
     background-image: url('images/PIC.jpeg');
     background-attachment: fixed;
@@ -16,7 +15,6 @@ html {
                  0 0 20px rgba(255, 255, 255, 0.8),
                  0 0 30px rgba(255, 255, 255, 0.6);
 }
-
 .text-xl {
     color: rgba(255, 255, 255, 0.7);
     text-shadow: 0 0 5px rgba(92, 31, 31, 0.5);
@@ -30,31 +28,25 @@ body {
     margin: 0;
     padding: 0;
 }
-
 h1, h2, h3 {
     font-weight: bold;
     color: #ffffff; /* White for headings */
 }
-
 p {
     color: #d1d5db; /* Light gray for body text */
 }
-
 a {
     color: #1E90FF; /* Subtle blue for links */
     text-decoration: none;
 }
-
 a:hover {
     text-decoration: underline;
 }
-
 .container {
     width: 90%;
     max-width: 1200px;
     margin: auto;
 }
-
 /* Buttons */
 .download-button {
     display: inline-flex;
@@ -68,13 +60,11 @@ a:hover {
     text-decoration: none;
     transition: all 0.3s ease;
 }
-
 .download-button:hover {
     background-color: #007acc;
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
 .tooltip {
     visibility: hidden;
     width: 140px;
@@ -91,12 +81,10 @@ a:hover {
     opacity: 0;
     transition: opacity 0.3s;
 }
-
 .download-button:hover .tooltip {
     visibility: visible;
     opacity: 1;
 }
-
 /* Cards */
 .card {
     position: relative;
@@ -108,12 +96,10 @@ a:hover {
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
 }
-
 .card:hover {
     transform: translateY(-10px);
     box-shadow: 0 8px 12px rgba(255, 255, 255, 0.2);
 }
-
 .card::before {
     content: '';
     position: absolute;
@@ -130,11 +116,9 @@ a:hover {
     transition: left 0.5s ease;
     z-index: 1;
 }
-
 .card:hover::before {
     left: 100%;
 }
-
 .card h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
@@ -142,7 +126,6 @@ a:hover {
     position: relative;
     z-index: 2;
 }
-
 .card p {
     font-size: 1rem;
     margin-bottom: 1rem;
@@ -150,16 +133,13 @@ a:hover {
     position: relative;
     z-index: 2;
 }
-
 /* Form Validation Feedback */
 input.valid, textarea.valid {
     border-color: #28a745; /* Green border for valid input */
 }
-
 input.invalid, textarea.invalid {
     border-color: #dc3545; /* Red border for invalid input */
 }
-
 /* Contact Section */
 .contact-me {
     background-color: #f0f8ff;
@@ -167,14 +147,12 @@ input.invalid, textarea.invalid {
     padding: 20px;
     border-radius: 8px;
 }
-
 .contact-me form {
     background-color: #fff;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 .contact-me input,
 .contact-me textarea {
     background-color: #f9f9f9;
@@ -185,7 +163,6 @@ input.invalid, textarea.invalid {
     border-radius: 4px;
     transition: border-color 0.3s ease; /* Smooth border color change */
 }
-
 .contact-me button {
     background-color: #6f2968;
     color: white;
@@ -195,48 +172,52 @@ input.invalid, textarea.invalid {
     cursor: pointer;
     transition: background-color 0.3s ease; /* Smooth button hover effect */
 }
-
 .contact-me button:hover {
     background-color: #0056b3;
 }
-
 /* Footer */
 footer {
     background-color: #1a1a1a;
     padding: 2rem 0;
     text-align: center;
 }
-
 footer p {
     font-size: 0.9rem;
     color: #6b7280;
 }
-
 /* Responsive Design */
 @media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 0 15px;
+    }
     .profile-picture-enlarged {
         width: 120px;
         height: 120px;
     }
-
     .profile-picture-smaller {
         width: 30px;
         height: 30px;
     }
-
     section {
         padding: 3rem 0;
     }
-
     h1 {
         font-size: 2rem;
     }
-
     p {
         font-size: 0.9rem;
     }
-
     .contact-me form {
         padding: 10px;
+    }
+    .card {
+        padding: 1.5rem;
+    }
+    .card h3 {
+        font-size: 1.2rem;
+    }
+    .card p {
+        font-size: 0.9rem;
     }
 }
