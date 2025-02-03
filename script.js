@@ -85,9 +85,3 @@ function loadMoreContent() {
     contentSection.appendChild(newContent);
 }
 
-// Trigger loading more content on scroll (for example)
-window.addEventListener('scroll', () => {
-    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
-        loadMoreContent();
-    }
-});
