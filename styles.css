@@ -1,16 +1,4 @@
 /* General Styles */
-/* Default hidden state for fade-in effect */
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-/* Active state when section appears */
-.fade-in-active {
-    opacity: 1;
-    transform: translateY(0);
-}
 header {
     background-image: url('images/PIC.jpeg');
     background-attachment: fixed;

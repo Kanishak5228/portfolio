@@ -1,6 +1,6 @@
-// Smooth Scroll for Anchor Links
+// Smooth Scroll Function for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+    anchor.addEventListener('click', function(e) {
         e.preventDefault();
         document.querySelector(this.getAttribute('href')).scrollIntoView({
             behavior: 'smooth'
@@ -8,55 +8,80 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Scroll Animation for Sections
-document.addEventListener("DOMContentLoaded", function () {
-    const sections = document.querySelectorAll("section");
+// Toggle Active Class for Sections on Scroll
+const sections = document.querySelectorAll('section');
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.5
+};
 
-    const observerOptions = {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.2 // Trigger animation when 20% of section is visible
-    };
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        } else {
+            entry.target.classList.remove('active');
+        }
+    });
+}, observerOptions);
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("fade-in-active"); // Add active class
-            } else {
-                entry.target.classList.remove("fade-in-active"); // Remove when out of view
-            }
-        });
-    }, observerOptions);
+sections.forEach(section => {
+    observer.observe(section);
+});
 
-    sections.forEach(section => {
-        section.classList.add("fade-in"); // Apply default hidden effect
-        observer.observe(section);
+// Hover Effect for Download Button Tooltip
+const downloadButton = document.querySelector('.download-button');
+const tooltip = downloadButton.querySelector('.tooltip');
+
+downloadButton.addEventListener('mouseenter', () => {
+    tooltip.style.visibility = 'visible';
+    tooltip.style.opacity = 1;
+});
+
+downloadButton.addEventListener('mouseleave', () => {
+    tooltip.style.visibility = 'hidden';
+    tooltip.style.opacity = 0;
+});
+
+// Form Validation Feedback
+const form = document.querySelector('.contact-me form');
+const inputs = form.querySelectorAll('input, textarea');
+const submitButton = form.querySelector('button');
+
+inputs.forEach(input => {
+    input.addEventListener('blur', () => {
+        if (input.value.trim() === '') {
+            input.classList.add('invalid');
+            input.classList.remove('valid');
+        } else {
+            input.classList.remove('invalid');
+            input.classList.add('valid');
+        }
     });
 });
 
 // Button Animation on Click
 const button = document.querySelector('.download-button');
-if (button) {
-    button.addEventListener('click', () => {
-        button.style.transform = 'scale(1.1)';
-        setTimeout(() => {
-            button.style.transform = 'scale(1)';
-        }, 300);
-    });
-}
-
-// Dark Mode Toggle
-const darkModeToggle = document.querySelector('.dark-mode-toggle');
-if (darkModeToggle) {
-    darkModeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-    });
-}
-
-// Scroll Progress Bar
-window.addEventListener("scroll", () => {
-    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (scrollTop / scrollHeight) * 100;
-    document.getElementById("progress-bar").style.width = scrolled + "%";
+button.addEventListener('click', () => {
+    button.style.transform = 'scale(1.1)';
+    setTimeout(() => {
+        button.style.transform = 'scale(1)';
+    }, 300);
 });
+
+// Toggle Dark Mode (Optional)
+const darkModeToggle = document.querySelector('.dark-mode-toggle');
+darkModeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+});
+
+// Example function for dynamically loading content
+function loadMoreContent() {
+    const contentSection = document.querySelector('.content-section');
+    const newContent = document.createElement('div');
+    newContent.classList.add('new-content');
+    newContent.innerHTML = `<p>Here's some more content! Keep scrolling...</p>`;
+    contentSection.appendChild(newContent);
+}
+
